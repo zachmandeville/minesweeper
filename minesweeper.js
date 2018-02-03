@@ -1,21 +1,8 @@
 document.addEventListener('DOMContentLoaded', startGame)
 
-// Define your `board` object here!
-/*var board = makeBoard(){
-    'cells':[
-	{row: 0, col: 0, isMine: true, hidden: true},
-	{row: 0, col: 1, isMine: false, hidden: true},
-	{row: 0, col: 2, isMine: false, hidden: true},
-	{row: 1, col: 0, isMine: false, hidden: true},
-	{row: 1, col: 1, isMine: true, hidden: true},
-	{row: 1, col: 2, isMine: true, hidden: true},
-	{row: 2, col: 0, isMine: false, hidden: true},
-	{row: 2, col: 1, isMine: false, hidden: true},
-	{row: 2, col: 2, isMine: false, hidden: true}  ]}
-*/
 var board = {'cells':[]};
 var size = 6;
-var maxbomb = 10;
+var maxbomb = 33;
 
 function makeBoard(size, maxbomb){
     for (i = 0; i < size; i++)
@@ -30,8 +17,16 @@ function makeBoard(size, maxbomb){
 
 
 function makeBombs(maxBomb){
-    for (var i = 0; i < maxBomb; i++)
-        board.cells[randomize()].isMine = true; }
+    var numBombs = 0;
+    while (numBombs < maxBomb) {
+	var cell = board.cells[randomize()];
+	if (cell.isMine)
+	    continue;
+
+	cell.isMine = true;
+	numBombs += 1;
+    }
+}
 
 function randomize(){
     var max = size * size;
