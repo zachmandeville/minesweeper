@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', startGame)
 // Variables for size and difficulty of board.
 var board = {'cells':[]};
 var size = 6;
-var maxbomb = 33;
+var maxbomb = 4;
 
 function makeBoard (size, maxbomb) {
 //create cell objects with values and add to cells array. 
@@ -60,6 +60,8 @@ function checkForWin () {
       return; 
   }
   lib.displayMessage('You win!'); 
+  var song = document.getElementById('winning-song')
+  song.play()
 }
 
 function countSurroundingMines (cell) {
